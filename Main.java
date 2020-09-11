@@ -1,5 +1,6 @@
 package com.company;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Main {
@@ -10,6 +11,8 @@ public class Main {
         String input_line = "";
         String first_cmd_word;
         String second_cmd_word;
+        int tasks_number = 0;
+        ArrayList<Task> tasks = new ArrayList<>();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         do {
@@ -23,11 +26,22 @@ public class Main {
                 second_cmd_word += input_line.charAt(i);
             switch (first_cmd_word) {
                 case ("add"):
-                    System.out.println(second_cmd_word);
+                    //System.out.println(second_cmd_word);
+                    tasks_number++;
+                    tasks.add(new Task(tasks_number, second_cmd_word));
 
                     break;
                 case ("all"):
-                    System.out.println("okay");
+                    //System.out.println("okay");
+                    if (tasks.size()>0)
+                    {
+                        for (int i = 0; i < tasks.size(); i++)
+                            System.out.println(tasks.get(i).id + " " + tasks.get(i).name + " " + tasks.get(i).status);
+                    }
+                    else
+                    {
+                        System.out.println("No tasks");
+                    }
                     break;
                 case ("help"):
                     System.out.println("'add task-info'");
